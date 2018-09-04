@@ -20,14 +20,19 @@ function move(path)
 end
 
 function feedCage()
-  -- robot.useDown()
+  robot.useDown()
   move("f")
-  -- robot.useDown()
+  robot.useDown()
 end
 
+function replenishSupplies()
+  -- TODO
+end
+
+-- Requires 12 wheat
 function feedCycle()
   move("f")
-  -- TODO: Get stuff from chest
+  replenishSupplies()
   move("4fl")
   feedCage()
   move("4fl")
@@ -43,4 +48,36 @@ function feedCycle()
   move("l4fl5f2r")
 end
 
-feedCycle()
+function plantRow()
+  for i = 1,6 do
+    -- robot.useDown()
+    move("f")
+  end
+  -- robot.useDown()
+end
+
+function cycleFarm()
+  -- robot.use()
+  os.sleep(5)
+  -- robot.use()
+  move("d2rfl3f2r")
+  plantRow()
+  move("lfl")
+  plantRow()
+  move("rfr")
+  plantRow()
+  move("lfl")
+  plantRow() 
+end
+
+function plantCycle()
+  move("f")
+  replenishSupplies()
+  move("l2f5ur5fr6fl")
+  cycleFarm()
+  move("2r3fl5f2u")
+  cycleFarm()
+  move("l4fur2fr5f5dr2f")
+end
+
+plantCycle()
