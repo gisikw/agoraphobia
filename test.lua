@@ -1,3 +1,5 @@
+local robot = require("robot")
+
 -- Usage: move("3fur2b")
 function move(path)
   local move_dir = {
@@ -16,3 +18,29 @@ function move(path)
     end
   end
 end
+
+function feedCage()
+  -- robot.useDown()
+  move("f")
+  -- robot.useDown()
+end
+
+function feedCycle()
+  move("f")
+  -- TODO: Get stuff from chest
+  move("4fl")
+  feedCage()
+  move("4fl")
+  feedCage()
+  move("7f")
+  feedCage()
+  move("l4f")
+  feedCage()
+  move("4fl")
+  feedCage()
+  move("7f")
+  feedCage()
+  move("l4fl5f2r")
+end
+
+feedCycle()
