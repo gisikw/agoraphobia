@@ -50,16 +50,16 @@ end
 
 function plantRow()
   for i = 1,6 do
-    -- robot.useDown()
+    robot.useDown()
     move("f")
   end
-  -- robot.useDown()
+  robot.useDown()
 end
 
 function cycleFarm()
-  -- robot.use()
+  robot.use()
   os.sleep(5)
-  -- robot.use()
+  robot.use()
   move("d2rfl3f2r")
   plantRow()
   move("lfl")
@@ -73,11 +73,11 @@ end
 function plantCycle()
   move("f")
   replenishSupplies()
-  move("l2f5ur5fr6fl")
+  move("l2f5ur5fr5fl")
   cycleFarm()
-  move("2r3fl5f2u")
+  move("2r3fl7fu")
   cycleFarm()
-  move("l4fur2fr5f5dr2f")
+  move("l4fur2fr5f5dr2fl")
 end
 
 plantCycle()
