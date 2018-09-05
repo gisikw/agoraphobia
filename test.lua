@@ -1,4 +1,6 @@
 local robot = require("robot")
+local inv = require("component").inventory_controller
+local sides = require("sides")
 
 -- Usage: move("3fur2b")
 function move(path)
@@ -26,13 +28,34 @@ function feedCage()
 end
 
 function replenishSupplies()
-  -- TODO
+  robot.select(1)
+  for i = 1,9 do
+    if robot.count() == 64 then
+      break
+    end
+    local available = inv.getStackInSlot(sides.down, i).size
+    if available > 1 then
+      inv.suckFromSlot(sides.down, i, available - 1)
+    end
+  end
+  robot.select(2)
+  for i = 10,19 do
+    if robot.count() == 64 then
+      break
+    end
+    local available = inv.getStackInSlot(sides.down, i).size
+    if available > 1 then
+      inv.suckFromSlot(sides.down, i, available - 1)
+    end
+  end
 end
 
 -- Requires 12 wheat
 function feedCycle()
   move("f")
   replenishSupplies()
+  robot.select(1)
+  inv.equip()
   move("4fl")
   feedCage()
   move("4fl")
@@ -46,6 +69,7 @@ function feedCycle()
   move("7f")
   feedCage()
   move("l4fl5f2r")
+  inv.equip()
 end
 
 function plantRow()
@@ -73,11 +97,24 @@ end
 function plantCycle()
   move("f")
   replenishSupplies()
+  robot.select(2)
+  inv.equip()
   move("l2f5ur5fr5fl")
   cycleFarm()
   move("2r3fl7fu")
   cycleFarm()
   move("l4fur2fr5f5dr2fl")
+  inv.equip()
 end
 
-plantCycle()
+-- Every 50 minutes, plant
+-- Every 12 minutes, feed
+function main()
+  while true do
+    for i = 1,4 do
+      feedCycle()
+      os.sleep(12 * 60)
+    end
+    plantCycle()
+  end
+end
