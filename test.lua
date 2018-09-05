@@ -30,27 +30,28 @@ end
 function replenishSupplies()
   robot.select(1)
   for i = 1,9 do
-    if robot.count() == 64 then
+    local hasCount = robot.count()
+    if hasCount == 64 then
       break
     end
     local available = inv.getStackInSlot(sides.down, i).size
     if available > 1 then
-      inv.suckFromSlot(sides.down, i, available - 1)
+      inv.suckFromSlot(sides.down, i, math.min(available - 1, 64 - hasCount))
     end
   end
   robot.select(2)
   for i = 10,19 do
-    if robot.count() == 64 then
+    local hasCount = robot.count()
+    if hasCount == 64 then
       break
     end
     local available = inv.getStackInSlot(sides.down, i).size
     if available > 1 then
-      inv.suckFromSlot(sides.down, i, available - 1)
+      inv.suckFromSlot(sides.down, i, math.min(available - 1, 64 - hasCount))
     end
   end
 end
 
--- Requires 12 wheat
 function feedCycle()
   move("f")
   replenishSupplies()
@@ -118,3 +119,4 @@ function main()
     plantCycle()
   end
 end
+main()
