@@ -1,3 +1,4 @@
+-- vim: tw=80 ts=2 expandtab
 local robot = require("robot")
 local inv = require("component").inventory_controller
 local sides = require("sides")
