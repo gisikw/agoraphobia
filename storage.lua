@@ -5,16 +5,19 @@ local sides = require("sides")
 local COLUMN_HEIGHT = 3
 
 function main()
-  goToPickupChest()
-  fillInventory()
-  goToFirstStorageChest()
-  for i = 1,3 do
-    for j = 1,10 do
-      processColumn() 
+  while true do
+    goToPickupChest()
+    fillInventory()
+    goToFirstStorageChest()
+    for i = 1,3 do
+      for j = 1,10 do
+        processColumn() 
+      end
+      move("r")
     end
-    move("r")
+    returnToCharger()
+    os.sleep(5 * 60)
   end
-  returnToCharger()
 end
 
 function goToPickupChest()
