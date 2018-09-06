@@ -37,7 +37,6 @@ function goToFirstStorageChest()
 end
 
 function processColumn()
-  -- Assume we're at the top of the leftmost column
   for i = 1,(COLUMN_HEIGHT-1) do
     processChest()
     robot.move("d")
@@ -66,10 +65,9 @@ function processChest()
 end
 
 function returnToCharger()
-  move("3ul2fl13f2d2l")
+  move("ul2fl12f2d2l")
 end
 
--- Usage: move("3fur2b")
 function move(path)
   local move_dir = {
     l = robot.turnLeft,
