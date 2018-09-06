@@ -23,15 +23,17 @@ end
 
 function fillInventory()
   for i = 1,inv.getInventorySize(sides.down) do
-    for j = 1,robot.inventorySize() do
-      robot.select(j)
-      inv.suckFromSlot(sides.down, i)
+    if inv.getStackInSlot(sides.down, i) then
+      for j = 1,robot.inventorySize() do
+        robot.select(j)
+        inv.suckFromSlot(sides.down, i)
+      end
     end
   end
 end
 
 function goToFirstStorageChest()
-  move("5fl5f2ur")
+  move("u5fl5fr")
 end
 
 function processColumn()
