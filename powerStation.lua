@@ -40,7 +40,7 @@ function replenishSupplies()
     end
   end
   robot.select(2)
-  for i = 10,19 do
+  for i = 10,18 do
     local hasCount = robot.count()
     if hasCount == 64 then
       break
