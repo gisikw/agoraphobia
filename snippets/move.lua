@@ -91,6 +91,8 @@ function move(path, f)
       visit(node.right)
     end
   end
+
+  visit(parse(path))
 end
 
 function offsetCurrentDirection(i)
