@@ -36,11 +36,59 @@ function move(path, f)
     end
   end
   perform.y = f
-  for step in string.gmatch(path, "%d*%a") do
-    local n = string.match(step, "%d+") or 1
-    local dir = string.sub(step, -1)
-    for i = 1,n do 
-      perform[dir]()
+
+  local parseString = ""
+
+  function chomp(pattern)
+    match = string.match(parseString, "^"..pattern) 
+    parseString = string.gsub(parseString, "^"..pattern, "")
+    return match
+  end
+
+  function parse(str)
+    parseString = str
+    return parseExpression()
+  end
+
+  function parseExpression()
+    local left = parsePair()
+    if string.len(parseString) == 0 or string.sub(parseString, 0, 1) == ")" then
+      return left
+    else
+      return { type = "Expression", left = left, right = parseExpression() }
+    end
+  end
+
+  function parsePair()
+    local n = chomp("%d+")
+    local term = parseTerm()
+    if n then
+      return { type = "Pair", num = tonumber(n), term = term }
+    else
+      return term 
+    end
+  end
+
+  function parseTerm()
+    if chomp("%(") then
+      local expr = parseExpression()
+      chomp("%)")
+      return expr
+    else
+      return { type = "Directive", value = chomp(".") } 
+    end
+  end
+
+  function visit(node)
+    if node.type == "Directive" then
+      perform[node.value]()
+    elseif node.type == "Pair" then
+      for i=1,node.num do
+        visit(node.term)
+      end
+    else
+      visit(node.left)
+      visit(node.right)
     end
   end
 end
@@ -56,9 +104,3 @@ function offsetCurrentDirection(i)
     positionOffset[3] = positionOffset[3] - i
   end
 end
-
--- move("urflurflurflurflurfl")
--- print("Rotation: "..rotationOffset)
--- print("X: "...positionOffset[1])
--- print("Y: "...positionOffset[2])
--- print("Z: "...positionOffset[3])
