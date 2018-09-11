@@ -44,7 +44,9 @@ function main()
 end
 
 function feedCage()
-  move("yfy", function() robot.use(0) end)
+  robot.use(0)
+  robot.move(3)
+  robot.use(0)
 end
 
 function sleep(timeout)
