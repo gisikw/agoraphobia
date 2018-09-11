@@ -92,7 +92,7 @@ function move(path, f)
     end
   end
 
-  visit(parse(path))
+  visit(parse(string.gsub(path, "%s+", "")))
 end
 
 function offsetCurrentDirection(i)
