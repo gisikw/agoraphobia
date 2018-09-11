@@ -14,8 +14,8 @@ while true do
     if durability == nil or durability < STOPPING_DURABILITY then
       break
     end
-    if robot.detect() then
-      robot.swing()
+    if robot.detect(3) then
+      robot.swing(3)
     end
     sleep(0.2)
   end
