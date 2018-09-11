@@ -36,7 +36,7 @@ function main()
       yl4f
       y4fl
       y7f
-      l4fl4flf2l
+      yl4fl4flf2l
     ]], feedCage)
     inv.equip()
     sleep(6 * 60)
