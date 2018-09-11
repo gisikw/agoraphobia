@@ -5,7 +5,7 @@ function main()
   while true do
     move("3f")
     robot.select(1)
-    for i = 1,9 do
+    for i = 1,27 do
       local hasCount = robot.count()
       if hasCount == 64 then
         break
@@ -15,7 +15,7 @@ function main()
         inv.suckFromSlot(0, i, math.min(available - 1, 64 - hasCount))
       end
     end
-    for i = 45,54 do
+    for i = 46,54 do
       local stack = inv.getStackInSlot(0, i)
       if stack then
         robot.select(robot.select() + 1)
@@ -33,7 +33,7 @@ function main()
       2r3fl4fl
       y4fl
       y7f
-      y14f
+      yl4f
       y4fl
       y7f
       l4fl4flf2l
