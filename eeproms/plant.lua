@@ -57,14 +57,15 @@ function navigateFarmLayout(f)
   end
   for i=1,13 do
     plantRow()
-    move(1, 0, -14)
+    move(1, 0, -13)
   end
   plantRow()
 end
 
 function returnToCharger()
-  move(-6, 0, -7)
-  move(0, -4, -2)
+  move(-6, 0, -6)
+  move(0, -4, 0)
+  move(0, 0, -2)
 end
 
 function move(x, y, z, timeout)
