@@ -71,7 +71,7 @@ function move(x, y, z)
   drone.move(x, y, z)
   repeat
     sleep(0.1)
-  until drone.getVelocity() == 0
+  until drone.getOffset() < 0.4
 end
 
 function sleep(timeout)
