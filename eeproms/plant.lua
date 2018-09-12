@@ -56,7 +56,9 @@ function navigateFarmLayout(f)
     end
   end
   plantRow(12)
+  move(1, 0, -12)
   plantRow(12)
+  move(1, 0, -12)
   for i=1,12 do
     plantRow(14)
     move(1, 0, -14)
