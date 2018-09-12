@@ -3,6 +3,7 @@ local inv = component.proxy(component.list("inventory_controller")())
 local modem = component.proxy(component.list("modem")())
 
 function main()
+  sleep(10)
   moveToAboveChest()
   drone.select(1)
   for i = 28,45 do
@@ -27,6 +28,7 @@ function main()
     modem.broadcast(4723)
     sleep(0.2)
   until computer.uptime() > startTime + 2
+  sleep(10)
   navigateFarmLayout(function()
     if drone.count() == 0 then
       drone.select(drone.select() + 1)
