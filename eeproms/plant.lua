@@ -116,3 +116,5 @@ function sleep(timeout)
     computer.pullSignal(deadline - computer.uptime())
   until computer.uptime() >= deadline
 end
+
+main()
