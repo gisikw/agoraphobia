@@ -24,7 +24,7 @@ function main()
   ascendToFarm()
   local startTime = computer.uptime()
   repeat
-    m.broadcast(4723)
+    modem.broadcast(4723)
     sleep(0.2)
   until computer.uptime() > startTime + 2
   navigateFarmLayout(function()
