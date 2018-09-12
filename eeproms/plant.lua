@@ -6,7 +6,7 @@ function main()
   moveToAboveChest()
   drone.select(1)
   for i = 28,45 do
-    local hasCount = robot.count()
+    local hasCount = drone.count()
     if hasCount == 64 then
       local currentSelect = drone.select()
       if currentSelect == 8 then
@@ -20,7 +20,7 @@ function main()
       inv.suckFromSlot(0, i, math.min(available - 1, 64 - hasCount))
     end
   end
-  robot.select(1)
+  drone.select(1)
   ascendToFarm()
   local startTime = computer.uptime()
   repeat
@@ -28,7 +28,7 @@ function main()
     sleep(0.2)
   until computer.uptime() > startTime + 2
   navigateFarmLayout(function()
-    if robot.count() == 0 then
+    if drone.count() == 0 then
       drone.select(drone.select() + 1)
     end
     drone.place(0)
