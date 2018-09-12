@@ -63,8 +63,8 @@ function navigateFarmLayout(f)
 end
 
 function returnToCharger()
-  move(-6, 0, -6)
-  move(0, -3, -2)
+  move(-6, 0, -7)
+  move(0, -4, -2)
 end
 
 function move(x, y, z)
