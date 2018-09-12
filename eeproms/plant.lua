@@ -67,12 +67,12 @@ function returnToCharger()
   move(0, -4, -2)
 end
 
-function move(x, y, z)
+function move(x, y, z, timeout)
   drone.move(x, y, z)
+  local deadline = computer.uptime() + (timeout or 5)
   repeat
-    drone.setStatusText(tostring(drone.getVelocity()))
     sleep(0.1)
-  until drone.getOffset() < 0.4 or drone.getVelocity() == 0
+  until drone.getOffset() < 0.4 or drone.getVelocity() == 0 or computer.uptime() >= deadline
 end
 
 function sleep(timeout)
