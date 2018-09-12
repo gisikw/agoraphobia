@@ -69,8 +69,10 @@ end
 
 function returnToCharger()
   move(-6, 0, -6)
+  sleep(2)
   move(0, -4, 0)
-  move(0, 0, -1)
+  sleep(2)
+  move(0, 0, -2)
 end
 
 function move(x, y, z, timeout)
