@@ -70,6 +70,7 @@ end
 function move(x, y, z)
   drone.move(x, y, z)
   repeat
+    drone.setStatusText(tostring(drone.getVelocity()))
     sleep(0.1)
   until drone.getOffset() < 0.4 or drone.getVelocity() == 0
 end
