@@ -55,11 +55,7 @@ function navigateFarmLayout(f)
       f()
     end
   end
-  plantRow(12)
-  move(1, 0, -12)
-  plantRow(12)
-  move(1, 0, -12)
-  for i=1,12 do
+  for i=1,13 do
     plantRow(14)
     move(1, 0, -14)
   end
@@ -75,7 +71,7 @@ function move(x, y, z)
   drone.move(x, y, z)
   repeat
     sleep(0.1)
-  until drone.getOffset() < 0.4
+  until drone.getOffset() < 0.4 or drone.getVelocity() == 0
 end
 
 function sleep(timeout)
