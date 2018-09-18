@@ -37,7 +37,9 @@ local commands = {
     for i = 1,27 do
       local stack = inv.getStackInSlot(side, i)
       if stack then
-        contents = contents .. stack.name .. "," .. stack.size .. "/" .. stack.maxSize
+        contents = contents .. stack.label .. "," .. stack.size .. "/" .. stack.maxSize
+      else
+        contents = contents .. "-"
       end
       contents = contents .. "|"
     end
