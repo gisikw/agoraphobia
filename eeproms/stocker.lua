@@ -17,7 +17,7 @@ function main()
     local event = {computer.pullSignal()}
     if event[1] == "modem_message" then
       drone.setStatusText("Heard")
-      run(event)
+      run(table.unpack(event))
     end
   end
 end
@@ -73,7 +73,7 @@ function split(s, delimiter)
   for match in (s..delimiter):gmatch("(.-)"..delimiter) do
     table.insert(result, match)
   end
-  return result
+  return table.unpack(result)
 end
 
 function moveToNeutral()
