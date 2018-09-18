@@ -13,7 +13,7 @@ function main()
       local hasCount = drone.count()
       if hasCount == 64 then
         local currentSelect = drone.select()
-        if currentSelect == 8 then
+        if currentSelect == 4 then
           break
         else
           drone.select(currentSelect + 1)
