@@ -27,7 +27,7 @@ local commands = {
     col = tonumber(col)
     row = tonumber(row)
     shelf = tonumber(shelf)
-    local side is 5
+    local side = 5
     if col % 2 then
       side = 4
     end
@@ -98,7 +98,11 @@ function move(x, y, z, timeout)
   until drone.getOffset() < 0.4 or drone.getVelocity() == 0
 end
 
--- Test code
--- run("CHECK", "3|2|1", "primary|20")
--- run("STORE", "34|64", "3|2|1", 1, "primary|20")
--- run("FETCH", "3|2|1", 1, "primary|20")
+function sleep(timeout)
+  local deadline = computer.uptime() + (timeout or 0)
+  repeat
+    computer.pullSignal(deadline - computer.uptime())
+  until computer.uptime() >= deadline
+end
+
+main()
