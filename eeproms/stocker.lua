@@ -10,9 +10,10 @@ local PORT = 6020
 -- stack: "itemId|size"
 
 function main()
-  move(0, 1, 0)
+  move(0, 2, 0)
   modem.open(PORT)
   while true do
+    drone.setStatusText("Listening")
     local event = {computer.pullSignal()}
     if event[1] == "modem_message" then
       run(select(6, event))
@@ -22,6 +23,7 @@ end
 
 local commands = {
   CHECK = function(location, remote)
+    drone.setStatusText("Checking")
     local col, row, shelf = split(location, "|")
     local addr, port = split(remote, "|")
     col = tonumber(col)
@@ -56,7 +58,8 @@ local commands = {
   end,
 }
 
-local function run(command, ...)
+function run(command, ...)
+  drone.setStatusText("Running")
   if commands[command] then
     -- Reply with an acknowledgement
     commands[command](...)
