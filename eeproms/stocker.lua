@@ -27,9 +27,9 @@ local commands = {
     col = tonumber(col)
     row = tonumber(row)
     shelf = tonumber(shelf)
-    local side = 5
+    local side = 4
     if col % 2 then
-      side = 4
+      side = 5
     end
     moveToNeutral()
     navigateTo(col, row, shelf)
@@ -37,7 +37,7 @@ local commands = {
     for i = 1,27 do
       local stack = inv.getStackInSlot(side, i)
       if stack then
-        contents = contents .. stack.id .. "," .. stack.size .. "/" .. stack.maxSize
+        contents = contents .. stack.name .. "," .. stack.size .. "/" .. stack.maxSize
       end
       contents = contents .. "|"
     end
