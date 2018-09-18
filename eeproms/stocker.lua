@@ -88,11 +88,11 @@ local xOffsetForColumn = {-4, -1, -1, 2, 2, 5, 5, 8, 8}
 
 function navigateTo(col, row, shelf)
   move(xOffsetForColumn[col], 0, 0)
-  move(0, 5 - row, 9 - shelf)
+  move(0, shelf - 9, 5 - row)
 end
 
 function navigateFrom(col, row, shelf)
-  move(0, row - 5, shelf - 9)
+  move(0, 9 - shelf, row - 5)
   move(-xOffsetForColumn[col], 0, 0)
 end
 
