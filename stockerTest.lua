@@ -1,7 +1,21 @@
 local modem = require("component").modem
 local event = require("event")
 
-modem.open(123)
-modem.broadcast(6020, "CHECK", "3|2|1", (modem.address).."|123")
-local _, _, from, port, _, message, col, row, shelf, contents = event.pull("modem_message")
-print("Got message from " .. from .. " on port " .. port .. ": " .. tostring(message) .. " " .. tostring(col) .. " " .. tostring(row) .. " " .. tostring(shelf) .. " " .. tostring(contents))
+-- Start conditions
+--    input chest:
+--      - 64 cobblestone
+--      - 64 dirt
+modem.broadcast(6020, "STORE", 1, 64, "1|1|1", 1, (modem.address).."|123")
+sleep(10)
+modem.broadcast(6020, "STORE", 2, 1, "1|1|1", 2, (modem.address).."|123")
+sleep(10)
+modem.broadcast(6020, "FETCH", "1|1|1", 1, 12, (modem.address).."|123")
+-- End conditions:
+--  input chest:
+--    - empty
+--    - 63 dirt
+--  output chest:
+--    - 12 cobble
+--  1|1|1 chest:
+--    - 52 cobble
+--    - 1 dirt
