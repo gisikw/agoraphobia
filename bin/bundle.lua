@@ -3,10 +3,7 @@
 
 local REQUIRE_PATTERN = "^(.*)require%([\"']([^\"']+)[\"']%)(.*)$"
 
-if not arg then 
-  -- If this doesn't work, debug in OpenOS
-  arg = ... 
-end
+arg = {...}
 if #arg ~= 2 then
   print "Usage: bundle input.lua output.lua"
   return 1
