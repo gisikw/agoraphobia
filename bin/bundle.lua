@@ -31,7 +31,7 @@ end
 
 local input = io.open(arg[1] .. ".lua")
 local output = io.open(arg[2] .. ".lua", "w")
-output:write([[bundle = { __defs = {} }
+output:write([[local bundle = { __defs = {} }
 setmetatable(bundle, {
   __index = function(self, key)
     if self.__defs[key] then
