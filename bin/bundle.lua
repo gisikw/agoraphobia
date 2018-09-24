@@ -24,9 +24,7 @@ function getDependencies(paths, dependencies)
 end
 
 function appendFile(file, buffer)
-  buffer:write(file:read("*a"):gsub(REQUIRE_PATTERN, function(name)
-    return "bundle[\"" .. name .. "\"]" 
-  end) .. "") 
+  buffer:write(file:read("*a"):gsub(REQUIRE_PATTERN, "bundle[\"%1\"]") .. "")
 end
 
 local input = io.open(arg[1] .. ".lua")
