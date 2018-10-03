@@ -42,12 +42,10 @@ function cmd.commit(arg)
   for path, _ in pairs(meta.staged) do
     table.insert(changes, {
       path = path,
-      mode = "100644",
-      type = "blob",
       content = io.open(path):read("*a")
     })
   end
-  github.commit(changes)
+  github.push(meta.shortname, changes)
 end
 
 function cmd.status()
